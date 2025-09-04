@@ -20,7 +20,9 @@ const Hero = () => {
   const [loadedVideos, setLoadedVideos] = useState(0);
 
   const totalVideos = 4;
-  const nextVdRef = useRef(null);
+  const nextVdRef = useRef<HTMLVideoElement | null>(null);
+
+  const getVideoSrc = (index: number) => `videos/hero-${index}.mp4`;
 
   const handleVideoLoad = () => {
     setLoadedVideos((prev) => prev + 1);
@@ -41,23 +43,29 @@ const Hero = () => {
   useGSAP(
     () => {
       if (hasClicked) {
-        gsap.set("#next-video", { visibility: "visible" });
-        gsap.to("#next-video", {
-          transformOrigin: "center center",
-          scale: 1,
-          width: "100%",
-          height: "100%",
-          duration: 1,
-          ease: "power1.inOut",
-          onStart: () => nextVdRef.current.play(),
-        });
+        const videoTransitionTimeline = gsap.timeline();
 
-        gsap.from("#current-video", {
-          transformOrigin: "center center",
-          scale: 0,
-          duration: 1.5,
-          ease: "power1.inOut",
-        });
+        videoTransitionTimeline
+          .set("#next-video", { visibility: "visible" })
+          .to("#next-video", {
+            transformOrigin: "center center",
+            scale: 1,
+            width: "100%",
+            height: "100%",
+            duration: 1,
+            ease: "power1.inOut",
+            onStart: () => {
+              if (nextVdRef.current) {
+                nextVdRef.current.play();
+              }
+            },
+          })
+          .from("#current-video", {
+            transformOrigin: "center center",
+            scale: 0,
+            duration: 1.5,
+            ease: "power1.inOut",
+          });
       }
     },
     {
@@ -82,13 +90,11 @@ const Hero = () => {
         scrub: true,
       },
     });
-  });
-
-  const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
+  }, []);
 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden">
-      {false && (
+      {loading && (
         <div className="flex-center absolute z-[100] h-dvh w-screen overflow-hidden bg-violet-50">
           <div className="three-body">
             <div className="three-body__dot"></div>

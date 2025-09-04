@@ -1,4 +1,4 @@
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import About from "@/components/about";
 // import Features from "@/components/Features";
@@ -9,7 +9,7 @@ import About from "@/components/about";
 export default function Home() {
   return (
     <main className="relative min-h-screen w-screen overflow-x-hidden">
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
       <About />
       {/* <Features /> */}

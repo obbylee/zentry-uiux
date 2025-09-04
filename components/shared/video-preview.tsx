@@ -1,16 +1,24 @@
 "use client";
 
 import { gsap } from "gsap";
-import { ReactNode, useState, useRef, useEffect } from "react";
+import { ReactNode, useState, useRef, useEffect, type MouseEvent } from "react";
 
-export const VideoPreview = ({ children }) => {
+interface VideoPreviewProps {
+  children: ReactNode;
+}
+
+export const VideoPreview = ({ children }: VideoPreviewProps) => {
   const [isHovering, setIsHovering] = useState(false);
 
-  const sectionRef = useRef(null); // Reference for the container section
-  const contentRef = useRef(null); // Reference for the inner content
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Handles mouse movement over the container
-  const handleMouseMove = ({ clientX, clientY, currentTarget }) => {
+  const handleMouseMove = ({
+    clientX,
+    clientY,
+    currentTarget,
+  }: MouseEvent<HTMLDivElement>) => {
     const rect = currentTarget.getBoundingClientRect(); // Get dimensions of the container
 
     const xOffset = clientX - (rect.left + rect.width / 2); // Calculate X offset
@@ -39,8 +47,8 @@ export const VideoPreview = ({ children }) => {
   };
 
   useEffect(() => {
-    // Reset the position of the content when hover ends
-    if (!isHovering) {
+    // Add explicit null checks before using the refs.
+    if (!isHovering && sectionRef.current && contentRef.current) {
       gsap.to(sectionRef.current, {
         x: 0,
         y: 0,
