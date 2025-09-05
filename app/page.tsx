@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import About from "@/components/about";
-// import Features from "@/components/Features";
+import Features from "@/components/features";
 // import Story from "@/components/Story";
 // import Contact from "@/components/Contact";
 // import Footer from "@/components/Footer";
@@ -12,7 +12,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      {/* <Features /> */}
+      <Features />
       {/* <Story /> */}
       {/* <Contact /> */}
       {/* <Footer /> */}
