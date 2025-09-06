@@ -1,12 +1,8 @@
 "use client";
 
-import { MouseEvent, type ReactNode, useEffect, useRef, useState } from "react";
+import { MouseEvent, type ReactNode, useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useMouse } from "react-use";
 
-// Define the props interface for BentoCard
 interface BentoCardProps {
   src: string;
   title: ReactNode;
@@ -14,7 +10,6 @@ interface BentoCardProps {
   isComingSoon?: boolean;
 }
 
-// Define the props interface for BentoTilt
 interface BentoTiltProps {
   children: ReactNode;
   className?: string;
