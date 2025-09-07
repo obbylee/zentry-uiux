@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 
 import Button from "./shared/button";
+import Image from "next/image";
 
 const navItems = ["Nexus", "Vault", "Prologue", "About", "Contact"];
 
@@ -86,7 +87,13 @@ const Navbar = () => {
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo and Product button */}
           <div className="flex items-center gap-7">
-            <img src="/img/logo.png" alt="logo" className="w-10" />
+            <Image
+              src="/img/logo.png"
+              alt="logo"
+              className="w-10"
+              width={400}
+              height={400}
+            />
             <Button
               id="product-button"
               title="Products"

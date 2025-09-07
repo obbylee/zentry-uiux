@@ -1,5 +1,6 @@
 import Button from "./shared/button";
 import AnimatedTitle from "./shared/animated-title";
+import Image from "next/image";
 
 interface ImageClipBoxProps {
   src: string;
@@ -8,7 +9,7 @@ interface ImageClipBoxProps {
 
 const ImageClipBox = ({ src, clipClass }: ImageClipBoxProps) => (
   <div className={clipClass}>
-    <img src={src} />
+    <Image src={src} alt="image clip" width={800} height={800} />
   </div>
 );
 
